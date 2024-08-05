@@ -1,0 +1,85 @@
+---
+title: "PSTAT 5LS Lab 0" 
+author: "Your Name Here"
+date: "Tuesday, August 6, 2024"
+output: pdf_document
+---
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+You can follow along with the TA's tutorial by running the chunks below. 
+
+```{r tryIt1, error = T}
+# Run this code chunk to print the phrase "Hello World!" to the screen
+print("Hello world!")
+```
+
+```{r tryIt2, error = T}
+# Run this code chunk to compute what 5 times 7 is
+5 * 7
+```
+
+```{r tryIt3, error = T}
+# Run this code chunk to compute what 36 divided by 6 is, and assign it to x
+x <- 36 / 6
+```
+
+```{r tryIt4, error = T}
+# Run this code chunk to see the value of x that R has stored
+x
+```
+
+```{r tryIt5, error = T}
+# Run this code chunk to see what happens if you use X (capitalized) instead
+X
+```
+
+```{r loadPenguins, error = T}
+# Run this code chunk to load the penguins data set into the environment
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+```{r peekAtPenguins, error = T}
+# Run this code chunk to peek at the penguins data set
+head(penguins)
+```
+
+```{r structureData, error = T}
+# Run this code chunk to examine the structure of the penguins data set
+str(penguins)
+```
+
+```{r tableOneVariable, error = T}
+# Run this code chunk to make a table of the species variable in the penguins data
+table(penguins$species)
+```
+
+```{r tableTwoVariables, error = T}
+# Run this code chunk to make a two-way frequency table of the variables species and island in the penguins data
+table(penguins$species, penguins$island)
+```
+
+# R Code Cheat Sheet
+
+## `<-`
+- Assigns a value to a name
+- `name <- value`
+
+## `$`
+- tells R that we are looking for a variable in a particular data frame
+- `data_set_name$data_set_variable`
+
+## `table(data_set_name$data_set_variable)`
+- creates a table of the frequencies of one categorical variable
+
+## `table(data_set_name$data_set_variable, data_set_name$data_set_variable)`
+- creates a two way table of the frequencies of two categorical variables
+
+
