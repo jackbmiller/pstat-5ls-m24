@@ -1,7 +1,7 @@
 ---
 title: "PSTAT 5LS Lab 0"
 author: "TA Name Here"
-date: "Tuesday, August 6, 2024"
+date: "Thursday, August 8, 2024"
 output:
   beamer_presentation:
     theme: AnnArbor
@@ -79,19 +79,17 @@ Click on the 'pstat-5ls-m24' folder.
 
 ## Accessing the Lab
 
-After you have clicked on the 'pstat-5ls-m24' folder, click on the folder for this lab (Lab 0).
-
-Here's an example from a previous quarter:
+After you have clicked on the 'pstat-5ls-m24' folder, click on the folder for this lab (lab0-intro-to-R):
 
 \begin{center}
-\includegraphics[width=10cm]{assets/images/RStudio-lab1-hw1-folder.png}
+\includegraphics[width=10cm]{assets/images/lab0-intro-to-R.png}
 \end{center}
 
 ## Working with R in JupyterHub
 
-When you navigate to <https://bit.ly/pstat5ls-m24>, you are telling JupyterHub to bring in all of the files that Professor Miller has in our PSTAT 5LS site. This means that files you have worked on will be overwritten.
+When you navigate to <https://bit.ly/pstat5ls-m24>, you are telling JupyterHub to bring in all of the files that Professor Miller has prepared for PSTAT 5LS. This means that any files you have worked on will be overwritten.
 
-To avoid your work being overwritten, **rename** both the notes and report files. For Lab 0, you want to rename lab0-notes.Rmd. You could add your name to the file name (e.g., lab0-notes-drmiller.Rmd).
+To avoid your work being overwritten, **rename** both the notes and report files. For Lab 0, you want to rename lab0-notes.Rmd. You could add your name to the file name (e.g., lab0-notes-profmiller.Rmd).
 
 ## Renaming Files
 
@@ -259,21 +257,19 @@ hi_mom <- 5^2
 
 ```
 
-
-
 ## Knit Your Document One Final Time
 
-Before you turn in your document, you want to be sure to knit one more time. This is just in case you have made any changes.
+At the end of any of the labs we do, be sure to knit one more time. This is so you have a finalized version of your work just in case you have made any changes.
 
 Be sure that a popup window shows you the file! Otherwise there is an error in the creation of the document. If this happens, you will need to troubleshoot the R markdown file. I am happy to help you with this.
 
-Be sure that you read over your file and make sure that it looks right! If pieces are missing, then there is an error in the creation of the document. You should troubleshoot the markdown file.
+Also be sure that you read over your file and make sure that it looks right! If pieces are missing, then you have an error somewhere in the creation of the document. You should troubleshoot the R Markdown file.
 
-## Export Your .pdf File
+## Export Your .pdf File to Save 
 
 Did you notice that when you knit, the document that is created is a .pdf file? Be sure that you always grab the **.pdf** document to submit your lab report on Gradescope!
 
--   In the Files pane, check the box next to `lab1-report-yourname.pdf.`
+-   In the Files pane, check the box next to `lab0-notes-yourname.pdf.`
 
 ![](assets/images/pdf_checkbox.png){width="50%"}
 
