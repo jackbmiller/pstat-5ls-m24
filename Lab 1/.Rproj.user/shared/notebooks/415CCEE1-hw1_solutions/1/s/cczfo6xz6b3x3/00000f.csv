@@ -1,0 +1,3 @@
+"0",""
+"0","tuition <- read.csv(""tuition_sample.csv"", stringsAsFactors = TRUE)"
+"0",""

@@ -1,0 +1,146 @@
+---
+title: "STATS 250 Lab 1 Notes"
+author: "Your Name Here"
+date: "Week of September 12, 2022"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_collapsed: yes
+    theme: lumen
+    css: assets/styles.css
+  ioslides_presentation: default
+---
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+Use the chunks below to try out any code that you'd like. We have loaded the `penguins` data set for you in the first chunk, so you can try things out with this data.
+
+```{r loadPenguins, error = T}
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+```{r tryIt1, error = T}
+# Use this code chunk to make a table of the species variable in the penguins data
+
+```
+
+```{r tryIt2, error = T}
+# Use this code chunk to make a two-way frequency table of the variables species and island in the penguins data
+
+```
+
+```{r tryIt3, error = T}
+# This chunk is given to you to help you make a bar chart of the species variable in the penguins data. Try it out by hitting the green run button (and being sure that the data is in the environment or you'll get an error!)
+barplot(table(penguins$species),
+     xlab = "Species",
+     ylab = "Frequency",
+     main = "Bar Chart of Number of Penguins of Each Species 
+            Observed",
+     col = c("darkorange1", "mediumorchid2", "darkcyan"))
+```
+
+```{r tryIt4, error = T}
+# Use this code chunk to get help with the barplot function
+
+```
+
+# Sample Lab Report Using the Penguins Data
+
+## Population of Interest
+
+Replace this text with information about the population of interest.
+
+## About the Data
+
+Replace this text with information about the data, such as the sample size, the variables it contains, etc. You may need to skip ahead to the Results section to run code to help you.
+
+## Study Design
+
+Replace this text with whether this data was collected as part of an observational study or an experiment, and how you know this.
+
+## Methods
+
+Replace this text with a description of what you will be doing in the section called "Results". Then in the section called "Results", you'll create the R code to analyse your data and create the appropriate output. We have created several chunks to help you. Delete this text once you are ready to begin.
+
+## Results
+
+```{r chunk1, error = T}
+# Use this code chunk to write the code necessary to answer the research question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+```
+
+```{r chunk2, error = T}
+# Use this code chunk to write the code necessary to answer the research question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+```
+
+## Conclusion
+
+Replace this text with the answer to the research question. Be sure to include all relevant context and to use support from your Results section.
+
+# Code Cheat Sheet
+
+## `$`
+- tells R that we are looking for a variable in a particular data frame
+- `data_set_name$data_set_variable`
+
+## `table(data_set_name$data_set_variable)`
+- creates a table of the frequencies of one categorical variable
+
+## `table(data_set_name$data_set_variable, data_set_name$data_set_variable)`
+- creates a two way table of the frequencies of two categorical variables
+
+## `barplot(table(data_set_name$data_set_variable))`
+- creates a barplot of a categorical variable
+
+## Important plotting arguments
+
+### `main = "Title of Your Graph in Double Quotes"`
+- graph title that must be inside a set of double quotes
+
+### `xlab = "x-axis Label of Your Graph in Double Quotes"`
+- the x- (horizontal) axis label that must be inside a set of double quotes
+
+### `ylab = "y-axis Label of Your Graph in Double Quotes"`
+- the y- (vertical) axis label that must be inside a set of double quotes
+
+# A Reminder on Canvas Submission
+
+At the top of the document, make sure you've changed the `author` field to your name (in quotes!). If you'd like, change the date as well.
+
+When you've finished the lab, click the **Knit** button one last time.<br />
+![Click the "Knit" button at the top of the editor pane"](assets/images/knit-button.jpg)
+
+Give yourself a high five - you just wrote code! *Do not violate social distancing guidelines to give anyone else a high five :(*
+
+### Submission instructions
+<!-- This is a comment and will not show up in your document. Note that the
+numbering here is all 1's. This will automatically be converted to 1, 2, etc.
+when you knit the document; writing all 1's makes it so you don't have to
+constantly update the numbering when you move things around in editing! -->
+
+  #### If you're using RStudio Cloud
+  1. In the Files pane, check the box next to `lab01report.html`: </br>
+  ![Check the box next to `lab01-report.html`](assets/images/html-checkbox.jpg)
+  2. Click More > Export... </br>
+  ![Click the More menu, then Export](assets/images/html-export.jpg)
+  3. Click Download and save the file on your computer in a folder you'll remember and be able to find later. You can just call the file `lab01-report.html` or whatever else you'd like (as  long as you remember what you called it). </br>
+  ![Click Download to save the file](assets/images/html-download-button.jpg)
+  
+#### Submission to Canvas
+
+1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 2", and open the assignment. Click "Submit Assignment". <br />
+  ![Click the Submit Assignment button in the Lab 1 assigment.](assets/images/canvas-lab1.jpg)
+
+2. Towards the bottom of the page, you'll be able to choose `lab01-report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.** <br />
+  ![Upload lab01report.html to Canvas](assets/images/canvas-file-upload.jpg)
+  
+  3. Click "Submit Assignment". You're done!
