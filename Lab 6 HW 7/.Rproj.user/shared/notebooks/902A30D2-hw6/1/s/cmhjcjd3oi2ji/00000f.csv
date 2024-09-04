@@ -1,0 +1,4 @@
+"0","# Run this code chunk to create a histogram for the flight delays for American Airlines"
+"0","hist(delays$AIRLINE_DELAY[delays$AIRLINE == ""AA""],"
+"0","     main = ""Histogram of American Airlines Delays"","
+"0","     xlab = ""Flight Delay in Minutes"")"

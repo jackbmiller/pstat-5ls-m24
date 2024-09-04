@@ -1,0 +1,2 @@
+"0","# Run this code chunk to read in the data"
+"0","delays <- read.csv(""delayed_flights.csv"", stringsAsFactors = TRUE)"

@@ -1,0 +1,364 @@
+---
+title: "PSTAT 5LS Lab 6 Notes"
+author: "Your Name Here"
+date: "Thursday, September 5, 2024"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Learning Objectives
+
+## R Learning Objectives
+1. Create a variable consisting of the differences in corresponding observations.
+1. Interpret R output providing confidence intervals and hypothesis tests for inference on the mean of a population of differences.
+1. Interpret R output providing confidence intervals and hypothesis tests for inference on the difference in two population means.
+1. Create histograms of just one group in order to check the normality conditions.
+
+## Statistical Learning Objectives
+1. Continue discussing quantitative data, this week in regards to a mean of differences (paired data) and a difference in two means scenario.
+1. Understand whether data is considered paired or from two independent samples.
+1. Understand confidence intervals and hypothesis test for a paired mean of differences.
+1. Understand confidence intervals and hypothesis test for a difference in two means.
+
+## Functions Covered in this Lab
+1. `pt()`
+1. `qt()`
+1. `t.test()`
+
+# Lab Tutorial
+
+## Collecting Two Sets of Numeric Data
+Today, we're talking about inference when data from 2 **sets** of a *numeric* variable is collected. Let's first revisit the conditions. 
+
+## Condition 1: Independence Within the Sample(s)
+We are **always** hoping that the observations within the sample (or within the sample**s**) are independent of one another. When we have taken a random sample (or sample**s**), we can generalize to the appropriate population (or population**s**).
+
+## Condition 2: Independence Between the Samples
+The question we have to ask ourselves, when dealing with 2 sets of observations of a numeric variable: 
+
+Are the two sets of observations independent of **one another**, such that observations in one sample tell us nothing about the observations in the other sample (and vice versa)?
+
+If the answer is **yes**, then the appropriate method of inference is to keep the data separate and discuss **a difference in two population means**, with parameter $\mu_1 - \mu_2$.
+
+If the answer is **no**, then the appropriate method of inference is to pair the data and discuss **the mean of the population of differences**, with parameter $\mu_{\text{d}}$.
+
+## Paired Data, Mean of the Differences
+For the *paired mean of the differences* scenario, we have
+
+parameter $\mu_{\text{d}}$
+
+statistic $\bar{x}_{\text{d}}$
+
+where the $\text{d}$'s represent the difference in observations.
+
+The conditions are
+
+1. **Independence** (within the sample): The observed differences should be independent of one another. This condition is typically satisfied with a random sample of the differences, but you might need to think about whether the differences are independent from observation to observation.
+2. **Normality**: The observed differences in observations should come from a (nearly-)normal population of differences. We will check by making a histogram of the differences in the sample. We can relax the condition more and more for larger and larger sample sizes.
+
+## Births from North Carolina in 2004
+The `penguins` data set doesn't contain anything that is paired data. So we turn our attention to a data set called `births.csv`.
+
+This data set was collected by taking a random sample of 800 entries in a database containing information about babies born to cisgender heterosexual couples in North Carolina in 2004. Variables include the father's age, the mother's age, the weight of the baby, etc. 
+
+Let's say we want to estimate the average difference in the age of the father and the mother of babies born in North Carolina in 2004. Do you think that the father's age and the mother's age in this data set are independent of each other, or, do you think that the father's age and the mother's age in this data set are dependent on each other?
+
+## Paired Data
+We should **pair** the data for father's age and mother's age together, as it was collected from the same observation (here, same baby). So we have one sample from one population of babies born in North Carolina in 2004. 
+
+Thus our parameter of interest is $\mu_{\text{d}}$, which represents the population mean of the difference in the age of the father and the mother of a baby born in North Carolina in 2004.
+
+## Normality Condition
+Recall that our normality condition requires that the observations of the difference in age need to come from a (nearly-)normal population.
+
+So we will need to create a histogram of the **differences** in the parents' ages from the sample, and see if the distribution is approximately bell-shaped. 
+
+## Creating a Variable of the Differences
+In order to make this histogram, we need to create a new variable that is defined as the difference in the father's age and mother's age for the babies born in North Carolina in 2004.
+
+Run the `tryit1` code chunk below to read in the data.
+
+```{r tryit1}
+babies <- read.csv("births.csv", stringsAsFactors = TRUE)
+```
+
+Next, let's add a variable called `ageDiff` to this `babies` data set. We will define the difference as father's age (`fage`) minus mother's age (`mage`). Have R calculate these differences in the `tryit2` code chunk below.
+
+```{r tryit2}
+babies$ageDiff <- babies$fage - babies$mage
+```
+
+## Creating a Histogram of the Differences
+We can now create the histogram of the differences in age between the father and the mother for the sampled babies born in North Carolina in 2004. 
+
+The title is really long, so we will go to the next line where we want a line break. Run the `tryit3` code chunk below to create a histogram of the differences.
+
+```{r tryit3, echo = FALSE, fig.align = "center", out.width = "65%"}
+hist(babies$ageDiff, 
+     main = "Histogram of the Differences in Age of the Father and Mother 
+     of Babies Born in North Carolina in 2004",
+     xlab = "Difference of Age in Years", 
+     col = "lightgreen")
+```
+
+*replace this text with your description of the histogram and whether the normality condition passes*
+
+## Estimating the Mean of the Differences
+We want to estimate the mean of the differences in age between fathers and mothers for all babies born in North Carolina in 2004. This requires creating a confidence interval. Let's create a 90% confidence interval. Try this out in the `tryit4` code chunk below. Be sure to specify the confidence level!
+
+```{r tryit4}
+t.test(babies$ageDiff, conf.level =  )
+```
+
+## Interpreting the Confidence Interval
+
+*replace this text with your interpretation of the confidence interval*
+
+## Difference in Two Means
+When we have two independent samples, we need to work with the *difference in two means*. In this scenario, we have
+
+parameter $\mu_1 - \mu_2$
+
+statistic $\bar{x}_1 - \bar{x}_2$
+
+for group 1 and group 2
+
+## Difference in Two Means
+
+The conditions are
+
+1. **Independence \textcolor{red}{within} each sample:** The observations within each sample are independent. Typically satisfied by taking two random samples (one from each population) or by taking one random sample and splitting it into two independent groups (e.g., in-state students and out-of-state students).
+2. **Independence \textcolor{red}{between} the samples:** The two samples are independent of one another such that observations in one sample tell us nothing about the observations in the other sample (and vice versa). 
+3. **Normality** (must check for both groups): Each sample of observations should come from a nearly-normal population. We will check by making a histogram of the sample observations from each of the groups. We can relax the condition more and more for larger and larger sample sizes.
+
+## Back to the Penguins!
+Run the `tryit5` code chunk below, to read in the `penguins` data. 
+
+```{r tryit5}
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+Let's compare the mean flipper lengths of Adelie and Chinstrap penguins. 
+
+## Subsetting the Data to Only Include Two Groups
+First, we'll subset the data to just involve Adelie and Chinstrap penguins. This is only because we're not interested in Gentoo penguins for this question, so we'll take them out. 
+
+Since we are interested in penguins that are *either* Adelie *or* Chinstrap, R has an easy way to achieve this by using the `%in%` operator. Don't forget the double quotes around Adelie and Chinstrap!
+
+Run the code in the `tryit6` code chunk below to create a subset of the data that has information for only the Adelie and Chinstrap penguins.
+
+```{r tryit6}
+penguinsSubset <- subset(penguins,
+                         species %in% c("Adelie", "Chinstrap"))
+```
+
+## Normality Condition x 2
+To check the normality conditions, we will need to make **two** histograms: one for the Adelie penguins, and another for the Chinstrap penguins.
+
+Since we only need these one group subsets for the histograms, we will not bother to give it a name. Instead, we will embed the subset code inside the histogram code.
+
+## Histogram of Just Adelie Penguins Flipper Length
+Run the `tryit7` code chunk below to produce a histogram of the flipper lengths for Adelie penguins.
+
+```{r tryit7, echo = FALSE}
+hist(penguinsSubset$flipper_length_mm[penguinsSubset$species == "Adelie"],
+     main = "Histogram of Flipper Lengths of Adelie Penguins",
+     xlab = "Flipper Length in mm",
+     col = "darkorange1")
+```
+
+## Histogram of Just Chinstrap Penguins Flipper Length
+Now run the code in the `tryit8` code chunk below to produce a histogram of the flipper lengths for Chinstrap penguins.
+
+```{r tryit8, echo = FALSE}
+hist(penguinsSubset$flipper_length_mm[penguinsSubset$species == "Chinstrap"],
+     main = "Histogram of Flipper Lengths of Chinstrap Penguins",
+     xlab = "Flipper Length in mm",
+     col = "mediumorchid2")
+```
+
+## Normality Condition
+
+Does the normality condition appear to be met for both samples?
+*replace this text with your answer and reasoning*
+
+## Hypothesis Test for the Difference in Two Means
+We would like to test the claim that there **is** a difference in the mean flipper length for the two groups, Adelie penguins and Chinstrap penguins. 
+
+$$H_0: \mu_1 - \mu_2 = 0 \quad H_A: \mu_1 - \mu_2 \neq 0$$
+
+The parameter here is $\mu_1 - \mu_2$, where $\mu_1$ is the mean flipper length in mm for Adelie penguins on Palmer Archipelago, and $\mu_2$ is the mean flipper length in mm for Chinstrap penguins on Palmer Archipelago.
+
+## Performing the *t*-test for the Difference in Two Population Means
+
+Add the alternative ("less", "greater", or "two-sided") to the `tryit9` code chunk below and then run the chunk to have R do the calculations for the hypothesis test.
+
+```{r tryit9}
+t.test(flipper_length_mm ~ species,
+       data = penguinsSubset,
+       alternative =  )
+```
+
+## Conclusion
+From the R output, we see that the test statistic is $t = -5.6115$ and the *p*-value is tiny (much less than any of the standard significance levels.) We reject the null hypothesis. 
+
+What do the results tell us?
+
+*replace this text with your conclusion to the hypothesis test*
+
+## Difference in Two Means Confidence Interval
+When we have statistically significant results that suggest there is a difference between the two populations means, it is helpful to construct a confidence interval to find a range of reasonable values for that difference. (Confidence intervals are also helpful when we are simply interested in estimating the parameter.) 
+
+As a reminder, the parameter here is $\mu_1 - \mu_2$, where $\mu_1$ is the mean flipper length in mm for Adelie penguins on Palmer Archipelago, and $\mu_2$ is the mean flipper length in mm for Chinstrap penguins on Palmer Archipelago.
+
+## Computing the 98% Confidence Interval for the Difference in Two Population Means
+
+Add the confidence level to the `tryit10` code chunk below and run it to get a 98% confidence interval.
+
+```{r tryit10}
+t.test(flipper_length_mm ~ species,
+       data = penguinsSubset,
+       conf.level =  )
+```
+
+## Interpreting the Confidence Interval
+The 98% confidence interval is (-8.124, -3.317). 
+
+A fairly standard way to interpret this confidence interval is to talk about reasonable values of the difference between the two means: 
+
+"We estimate, with 98% confidence, that the difference between the mean flipper length in mm for Adelie penguins on Palmer Archipelago and the mean flipper length in mm for Chinstrap penguins on Palmer Archipelago is between -8.124 mm and -3.317."
+
+This confidence interval is awkward. A better way to understand what the confidence interval tells us is to say
+
+"We estimate, with 98% confidence, that the mean flipper length in mm for Adelie penguins on Palmer Archipelago is between 3.317 mm and 8.124 mm *less* than the mean flipper length in mm for Chinstrap penguins on Palmer Archipelago."
+
+# Symbol Cheat Sheet
+
+Inequality
+
+$\neq 0$
+
+Chi-square
+
+$\chi^2$
+
+Population means:
+
+$\mu$
+
+$\mu_d$
+
+$\mu_1 - \mu_2$
+
+$\mu_1$
+
+$\mu_2$
+
+Sample means:
+
+$\bar{x}$
+
+$\bar{x}_d$
+
+$\bar{x}_1 - \bar{x}_2$
+
+$\bar{x}_1$
+
+$\bar{x}_2$
+
+Curious to learn more about formatting math in RMarkdown? More or less, RMarkdown and Knitr use LaTeX formatting (pronounced "LAY-tech" or "LAH-tech") to produce math characters and expression, so most guides you read on typesetting math in LaTeX will also apply to Rmd. If you're interested (and to be clear, this is not required for any part of the course), I'd check out [this tutorial from Overleaf](https://www.overleaf.com/learn/latex/Mathematical_expressions) first. And here is a [pretty extensive cheatsheet for symbols](https://www.caam.rice.edu/~heinken/latex/symbols.pdf). 
+
+# Code Cheat Sheet
+
+## `pt(q, df, lower.tail = TRUE)`
+
+- `q` is the x-axis value you want to find an area related to
+- `df` is the degrees of freedom of the $t$ distribution
+- `lower.tail` determines whether `pt()` finds the area to the left or right of `q`. If `lower.tail = TRUE` (the default), it shades to the left. If `lower.tail = FALSE`, it shades to the right.
+  
+## `qt(q, df, lower.tail = TRUE)`
+
+- `p` is the probability or area under the curve you want to find an x-axis value for
+- `df` is the degrees of freedom of the $t$ distribution
+- `lower.tail` determines whether `pt()` finds the area to the left or right of `q`. If `lower.tail = TRUE` (the default), it shades to the left. If `lower.tail = FALSE`, it shades to the right.
+  
+## `plot_t()`
+
+- `df` refers to the degrees of freedom of the distribution to plot. You must provide this value.
+- `shadeValues` is a vector of up to 2 numbers that define the region you want to shade
+- `direction` can be one of `less`, `greater`, `beyond`, or `between`, and controls the direction of shading between `shadeValues`. Must be `less` or `greater` if `shadeValues` has only one element; `beyond` or `between` if two
+- `col.shade` controls the color of the shaded region, defaults to `"cornflowerblue"`
+- `...` lets you specify other graphical parameters to control the appearance of the normal curve (e.g., `lwd`, `lty`, `col`, etc.)
+
+## `t.test(x, alternative, mu, conf.level)`
+- `x` is a vector of data values OR a formula of the form *variableOfInterest ~ group* for two-sample t-tests.
+- `alternative` specifies the direction of the alternative hypothesis; must be one of "two.sided", "less", or "greater"
+- `mu` indicates the true value of the mean (under the null hypothesis); defaults to 0
+- `conf.level` is the confidence level to be used in constructing a confidence interval; must be between 0 and 1, defaults to 0.95
+
+## Important plotting arguments
+
+### `main = "Title of Your Graph in Double Quotes"`
+
+- graph title that must be inside a set of double quotes
+
+### `xlab = "x-axis Label of Your Graph in Double Quotes"`
+
+- the x- (horizontal) axis label that must be inside a set of double quotes
+
+### `ylab = "y-axis Label of Your Graph in Double Quotes"`
+
+- the y- (vertical) axis label that must be inside a set of double quotes
+
+# Reminder about Submission to Gradescope
+
+At the top of the document, make sure you've changed the `author` field to your name (in quotes!) and the `date` field to today's date. 
+
+When you've finished the lab, click the **Knit** button one last time.<br />
+
+![Click the "Knit" button at the top of the editor pane"](assets/images/knit-button.png)
+
+Give yourself a high five - you just wrote code! 
+
+### Submission instructions
+<!-- This is a comment and will not show up in your document. Note that the
+numbering here is all 1's. This will automatically be converted to 1, 2, etc.
+when you knit the document; writing all 1's makes it so you don't have to
+constantly update the numbering when you move things around in editing! -->
+
+1. In the Files pane, check the box next to your `lab1report.pdf`: </br>
+  
+  ![Check the box next to your `lab1-report.pdf`](assets/images/pdf_checkbox.png)
+
+2. Click More > Export... </br>
+
+  ![Click the More menu, then Export](assets/images/pdf_export.png) </br>
+
+3. Click Download and save the file on your computer in a folder you'll remember and be able to find later. You can just call the file `lab1-report.pdf` or whatever else you'd like (as  long as you remember what you called it). 
+
+</br>
+![Click Download to save the file](assets/images/pdf-download-button.png)
+
+## Submission to Gradescope
+
+- Access Gradescope through Canvas
+
+![](assets/images/gradescope_in_canvas.png)
+
+## Submit to Gradescope Continued
+
+- Click on the assignment name (e.g., Lab 1 Report). 
+- Click Submit PDF > Select PDF > locate the file > Upload PDF. You can only submit one PDF file per assignment. 
+- On your screen, you should see a list of the questions/problems in your assignment and thumbnails of your PDF page(s). For each question, click the question on the left and the PDF page(s) that contains the answers on the right.
+- Now, click Submit. When your submission is successful, you will be sent to a new page to view your submission, you’ll see a success message on your screen, and you’ll receive an email. If your submitted file looks good, you see the success message, and you get the confirmation email, you’re done!
+- If you need to, select the Resubmit button in the bottom right corner of your screen below your submission. Then, repeat the steps above as many times as needed before the assignment due date passes. We will only see your most recent submission when we grade your lab report. All your past submissions are in your Submission History.
